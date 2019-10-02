@@ -123,4 +123,25 @@ function movieIt (movieQuery) {
     }); 
 };
 
-movieIt();
+// movieIt();
+
+// Switch for commands for all functions
+var ask = function (commands, data){
+    switch(commands) {
+        case "concert-this":
+            concertIt(data);
+            break;
+        case "movie-this" :
+            movieIt(data);
+            break;    
+        case 'spotify-this':
+            spotifyIt(data); 
+            break;
+        case 'do-what-it-says':
+            doWhatItSays(); 
+            break;
+        default:
+        console.log("Invalid command. Please try again");
+    }
+};
+
