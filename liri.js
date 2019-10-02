@@ -50,7 +50,7 @@ function spotifyThis(musicSearch) {
 
     //If no song is provided then your program will default to "The Sign" by Ace of Base.
     if (musicSearch === undefined || null) {
-        musicSearch = "Panic at the disco";
+        musicSearch = "I saw the sign Ace of Base";
     }
 
     spotify.search({ type: 'track', query: musicSearch }, function (err, data) {
@@ -129,13 +129,13 @@ function movieIt (movieQuery) {
 var ask = function (commands, data){
     switch(commands) {
         case "concert-this":
-            concertIt(data);
+            bandsInTown(data);
             break;
         case "movie-this" :
             movieIt(data);
             break;    
         case 'spotify-this':
-            spotifyIt(data); 
+            spotifyThis(data); 
             break;
         case 'do-what-it-says':
             doWhatItSays(); 
@@ -144,4 +144,21 @@ var ask = function (commands, data){
         console.log("Invalid command. Please try again");
     }
 };
+
+//Do what it says reads text from random.txt file
+var doWhatItSays = function() {
+    fs.readFile("random.txt", "utf8", function (err, data) {
+        if (err) throw err;
+            var randomText = data.split(",");
+        
+        if (randomText.length == 2) {
+            ask(randomText[0], randomText[1]);
+        }
+        else if (randomText.length == 1) {
+            ask(randomText[0]);
+        }
+    });
+}
+// asigns args to ask for switch case
+ask (command, input);
 
