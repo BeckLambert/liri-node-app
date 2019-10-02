@@ -16,33 +16,24 @@ var command = process.argv[2];
 var input = process.argv[3];
 
 
+
+
+
 function bandsInTown(bandQuery) {
+                        // bands in town url
+    axios.get("https://rest.bandsintown.com/artists/" + bandQuery + "/events?app_id=codingbootcamp")
+        .then(function (response) {
+            console.log("Name of the venue: ", response.data[0].venue.name);
+            //use moment format for date/time/year
+            console.log("Venue location: ", response.data[0].venue.city);
+            //moment(reponse.data[0].datetime)
+            var dateEvent = moment(response.data[0].datetime).format("MM/DD/YYYY");
+            console.log("Date of the event: ", dateEvent);
 
-    // bands in town url
-    var queryUrl = "https://rest.bandsintown.com/artists/" + bandQuery + "/events?app_id=codingbootcamp";
-  
-    console.log(queryUrl);
-
-    request(queryUrl, function (error, response, body) {
-
-        // If the request is successful
-        if (!error && response.statusCode === 200) {
-
-            var concertData = JSON.parse(body);
-
-            var concertDT = concertData[0].datetime
-            var momentDT = moment().format('L');
-
-
-            console.log(concertData); 
-            // Name of the venue
-            console.log("Venue Name : " + concertData[0].venue.name +
-                // Venue location
-                "\nVenue Location: " + concertData[0].venue.city + "," + concertData[0].venue.country +
-                //Date of the Event (use moment to format this as "MM/DD/YYYY")
-                "\nDate of the Event: " + momentDT);
-        };
-    });
+        })
+        .catch(function (err) {
+            console.log(err);
+        })
 }
 // bandsInTown();
 
