@@ -1,4 +1,9 @@
 # liri-node-app
 
-Client ID 94b4a2d8b5644622815bfbc6f5b2e081
-Client Secret 60638590612f477f8eb09ad3558c7951
+![bands in town screenshot](Images/concert-this.png)
+
+![omdb screenshot](https://github.com/BeckyLambert/liri-node-app/blob/master/Images/movie-this.png)
+
+![spotify screenshot](Images/spotify-this.png)
+
+![do what it says screenshot](Images/do-what-it-says.png)
