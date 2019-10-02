@@ -44,7 +44,7 @@ function bandsInTown(bandQuery) {
         };
     });
 }
-bandsInTown();
+// bandsInTown();
 
 function spotifyThis(musicSearch) {
 
@@ -78,3 +78,49 @@ function spotifyThis(musicSearch) {
 }
 
 // spotifyThis();
+
+function movieIt (movieQuery) {
+ 
+    // * If the user doesn't type a movie in, the program will output data for the movie 'Mr.Nobody.'
+     if (movieQuery === undefined || null) {
+            movieQuery = "Mr.Nobody";
+        }
+
+    // omdb API key
+    var queryUrl = "http://www.omdbapi.com/?t=" + movieQuery + "&y=&plot=short&apikey=trilogy";
+
+    // This line is just to help us debug against the actual URL.
+    console.log(queryUrl);
+
+    request(queryUrl, function (error, response, body) { 
+        
+    // If the request is successful
+       if (!error && response.statusCode === 200) {      
+           // JSON.parse for legibility
+            var movieData = JSON.parse(body);
+                                   
+            // for (i = 0; i < movieData.length && i < 5; i++) {
+                console.log("===============================");
+            // * Title of the movie.              
+                console.log("Movie Title: " + movieData.Title +
+            // * Year the movie came out.
+                "\nYear: " + movieData.released +
+            // * IMDB Rating of the movie.
+                "\nIMDB Rating: " + movieData.imdbRating +
+            // * Rotten Tomatoes Rating of the movie.
+                "\nRotten Tomatoes Rating: " + movieData.Ratings[1].Value +
+            // * Country where the movie was produced.
+                "\nCountry: " + movieData.Country +
+            // * Language of the movie.
+                "\nLanguage: " + movieData.Language +
+            // * Plot of the movie.
+                "\nPlot: " + movieData.Plot +
+            // * Actors in the movie.
+                "\nActors: " + movieData.Actors +
+                "\n===============================");             
+            // };
+        };
+    }); 
+};
+
+movieIt();
