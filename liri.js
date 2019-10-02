@@ -1,15 +1,15 @@
 require("dotenv").config();
 
 var keys = require("./keys.js");
-// var spotify = spotify(keys.spotify);
+var Spotify = require('node-spotify-api');
+var spotify = new Spotify(keys.spotify);
 var request = require('request');
 var fs = require('fs');
-var Spotify = require('node-spotify-api');
-var dotenv = require("dotenv").config();
+var axios = require('axios');
 
 //moment js
 var moment = require('moment');
-moment().format();
+// moment().format();
 
 //variable for input
 var command = process.argv[2];
@@ -19,7 +19,7 @@ var input = process.argv[3];
 function bandsInTown(bandQuery) {
 
     // bands in town url
-    var queryUrl = "https://rest.bandsintown.com/artists/" + bandQuery + "/events?app_id=codingbootcamp#";
+    var queryUrl = "https://rest.bandsintown.com/artists/" + bandQuery + "/events?app_id=codingbootcamp";
   
     console.log(queryUrl);
 
@@ -44,12 +44,13 @@ function bandsInTown(bandQuery) {
         };
     });
 }
+bandsInTown();
 
 function spotifyThis(musicSearch) {
 
     //If no song is provided then your program will default to "The Sign" by Ace of Base.
     if (musicSearch === undefined || null) {
-        musicSearch = "The Sign Ace of Base";
+        musicSearch = "Panic at the disco";
     }
 
     spotify.search({ type: 'track', query: musicSearch }, function (err, data) {
@@ -76,4 +77,4 @@ function spotifyThis(musicSearch) {
     });
 }
 
-spotifyThis();
+// spotifyThis();
