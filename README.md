@@ -19,3 +19,10 @@
 
 
 
+![bands in town screenshot](Images/concert-this.png)
+
+![omdb screenshot](Images/movie-this.png)
+
+![spotify screenshot](Images/spotify-this.png)
+
+![do what it says screenshot](Images/do-what-it-says.png)
